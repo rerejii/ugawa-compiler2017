@@ -53,14 +53,14 @@ public class ParseTreeInterpreter extends InterpreterBase {
 			ParenExprContext ctx = (ParenExprContext) ctxx;
 			return evalExpr(ctx.expr(), env);
 		} else
-			throw new Error("Unknown parse tree node: "+ctxx.getText());		
+			throw new Error("Unknown parse tree node: "+ctxx.getText());
 	}
 
 	public int eval(ParseTree tree) {
 		Environment env = new Environment();
 		addGlobalVariable(env, "x", 1);
 		addGlobalVariable(env, "y", 10);
-		addGlobalVariable(env, "z", -1);		
+		addGlobalVariable(env, "z", -1);
 		return evalExpr(tree, env);
 	}
 
