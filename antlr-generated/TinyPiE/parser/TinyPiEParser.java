@@ -1,4 +1,4 @@
-// Generated from parser/TinyPiE.g4 by ANTLR 4.6
+// Generated from TinyPiE/parser/TinyPiE.g4 by ANTLR 4.6
 package parser;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -80,8 +80,8 @@ public class TinyPiEParser extends Parser {
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 	public static class ExprContext extends ParserRuleContext {
-		public AddExprContext addExpr() {
-			return getRuleContext(AddExprContext.class,0);
+		public BitExprContext bitExpr() {
+			return getRuleContext(BitExprContext.class,0);
 		}
 		public ExprContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -96,7 +96,7 @@ public class TinyPiEParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(10);
-			addExpr(0);
+			bitExpr(0);
 			}
 		}
 		catch (RecognitionException re) {
@@ -185,13 +185,9 @@ public class TinyPiEParser extends Parser {
 		public MulExprContext mulExpr() {
 			return getRuleContext(MulExprContext.class,0);
 		}
-		public List<AddExprContext> addExpr() {
-			return getRuleContexts(AddExprContext.class);
+		public AddExprContext addExpr() {
+			return getRuleContext(AddExprContext.class,0);
 		}
-		public AddExprContext addExpr(int i) {
-			return getRuleContext(AddExprContext.class,i);
-		}
-		public TerminalNode BITOP() { return getToken(TinyPiEParser.BITOP, 0); }
 		public TerminalNode ADDOP() { return getToken(TinyPiEParser.ADDOP, 0); }
 		public AddExprContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -219,47 +215,29 @@ public class TinyPiEParser extends Parser {
 			mulExpr(0);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(34);
+			setState(31);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(32);
-					_errHandler.sync(this);
-					switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
-					case 1:
-						{
-						_localctx = new AddExprContext(_parentctx, _parentState);
-						pushNewRecursionContext(_localctx, _startState, RULE_addExpr);
-						setState(26);
-						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
-						setState(27);
-						match(BITOP);
-						setState(28);
-						addExpr(4);
-						}
-						break;
-					case 2:
-						{
-						_localctx = new AddExprContext(_parentctx, _parentState);
-						pushNewRecursionContext(_localctx, _startState, RULE_addExpr);
-						setState(29);
-						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-						setState(30);
-						match(ADDOP);
-						setState(31);
-						mulExpr(0);
-						}
-						break;
+					{
+					_localctx = new AddExprContext(_parentctx, _parentState);
+					pushNewRecursionContext(_localctx, _startState, RULE_addExpr);
+					setState(26);
+					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
+					setState(27);
+					match(ADDOP);
+					setState(28);
+					mulExpr(0);
 					}
 					} 
 				}
-				setState(36);
+				setState(33);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
 			}
 			}
 		}
@@ -304,13 +282,13 @@ public class TinyPiEParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			{
-			setState(38);
+			setState(35);
 			unaryExpr();
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(45);
+			setState(42);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
@@ -319,18 +297,18 @@ public class TinyPiEParser extends Parser {
 					{
 					_localctx = new MulExprContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_mulExpr);
-					setState(40);
+					setState(37);
 					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-					setState(41);
+					setState(38);
 					match(MULOP);
-					setState(42);
+					setState(39);
 					unaryExpr();
 					}
 					} 
 				}
-				setState(47);
+				setState(44);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
 			}
 			}
 		}
@@ -375,14 +353,14 @@ public class TinyPiEParser extends Parser {
 		UnaryExprContext _localctx = new UnaryExprContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_unaryExpr);
 		try {
-			setState(54);
+			setState(51);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case VALUE:
 				_localctx = new LiteralExprContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(48);
+				setState(45);
 				match(VALUE);
 				}
 				break;
@@ -390,7 +368,7 @@ public class TinyPiEParser extends Parser {
 				_localctx = new VarExprContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(49);
+				setState(46);
 				match(IDENTIFIER);
 				}
 				break;
@@ -398,11 +376,11 @@ public class TinyPiEParser extends Parser {
 				_localctx = new ParenExprContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(50);
+				setState(47);
 				match(T__0);
-				setState(51);
+				setState(48);
 				expr();
-				setState(52);
+				setState(49);
 				match(T__1);
 				}
 				break;
@@ -442,36 +420,34 @@ public class TinyPiEParser extends Parser {
 	private boolean addExpr_sempred(AddExprContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 1:
-			return precpred(_ctx, 3);
-		case 2:
 			return precpred(_ctx, 2);
 		}
 		return true;
 	}
 	private boolean mulExpr_sempred(MulExprContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 3:
+		case 2:
 			return precpred(_ctx, 2);
 		}
 		return true;
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\n;\4\2\t\2\4\3\t"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\n8\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\7\3\25\n\3"+
-		"\f\3\16\3\30\13\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\7\4#\n\4\f\4\16"+
-		"\4&\13\4\3\5\3\5\3\5\3\5\3\5\3\5\7\5.\n\5\f\5\16\5\61\13\5\3\6\3\6\3\6"+
-		"\3\6\3\6\3\6\5\69\n\6\3\6\2\5\4\6\b\7\2\4\6\b\n\2\2;\2\f\3\2\2\2\4\16"+
-		"\3\2\2\2\6\31\3\2\2\2\b\'\3\2\2\2\n8\3\2\2\2\f\r\5\6\4\2\r\3\3\2\2\2\16"+
-		"\17\b\3\1\2\17\20\5\6\4\2\20\26\3\2\2\2\21\22\f\4\2\2\22\23\7\5\2\2\23"+
-		"\25\5\6\4\2\24\21\3\2\2\2\25\30\3\2\2\2\26\24\3\2\2\2\26\27\3\2\2\2\27"+
-		"\5\3\2\2\2\30\26\3\2\2\2\31\32\b\4\1\2\32\33\5\b\5\2\33$\3\2\2\2\34\35"+
-		"\f\5\2\2\35\36\7\5\2\2\36#\5\6\4\6\37 \f\4\2\2 !\7\6\2\2!#\5\b\5\2\"\34"+
-		"\3\2\2\2\"\37\3\2\2\2#&\3\2\2\2$\"\3\2\2\2$%\3\2\2\2%\7\3\2\2\2&$\3\2"+
-		"\2\2\'(\b\5\1\2()\5\n\6\2)/\3\2\2\2*+\f\4\2\2+,\7\7\2\2,.\5\n\6\2-*\3"+
-		"\2\2\2.\61\3\2\2\2/-\3\2\2\2/\60\3\2\2\2\60\t\3\2\2\2\61/\3\2\2\2\629"+
-		"\7\t\2\2\639\7\b\2\2\64\65\7\3\2\2\65\66\5\2\2\2\66\67\7\4\2\2\679\3\2"+
-		"\2\28\62\3\2\2\28\63\3\2\2\28\64\3\2\2\29\13\3\2\2\2\7\26\"$/8";
+		"\f\3\16\3\30\13\3\3\4\3\4\3\4\3\4\3\4\3\4\7\4 \n\4\f\4\16\4#\13\4\3\5"+
+		"\3\5\3\5\3\5\3\5\3\5\7\5+\n\5\f\5\16\5.\13\5\3\6\3\6\3\6\3\6\3\6\3\6\5"+
+		"\6\66\n\6\3\6\2\5\4\6\b\7\2\4\6\b\n\2\2\67\2\f\3\2\2\2\4\16\3\2\2\2\6"+
+		"\31\3\2\2\2\b$\3\2\2\2\n\65\3\2\2\2\f\r\5\4\3\2\r\3\3\2\2\2\16\17\b\3"+
+		"\1\2\17\20\5\6\4\2\20\26\3\2\2\2\21\22\f\4\2\2\22\23\7\5\2\2\23\25\5\6"+
+		"\4\2\24\21\3\2\2\2\25\30\3\2\2\2\26\24\3\2\2\2\26\27\3\2\2\2\27\5\3\2"+
+		"\2\2\30\26\3\2\2\2\31\32\b\4\1\2\32\33\5\b\5\2\33!\3\2\2\2\34\35\f\4\2"+
+		"\2\35\36\7\6\2\2\36 \5\b\5\2\37\34\3\2\2\2 #\3\2\2\2!\37\3\2\2\2!\"\3"+
+		"\2\2\2\"\7\3\2\2\2#!\3\2\2\2$%\b\5\1\2%&\5\n\6\2&,\3\2\2\2\'(\f\4\2\2"+
+		"()\7\7\2\2)+\5\n\6\2*\'\3\2\2\2+.\3\2\2\2,*\3\2\2\2,-\3\2\2\2-\t\3\2\2"+
+		"\2.,\3\2\2\2/\66\7\t\2\2\60\66\7\b\2\2\61\62\7\3\2\2\62\63\5\2\2\2\63"+
+		"\64\7\4\2\2\64\66\3\2\2\2\65/\3\2\2\2\65\60\3\2\2\2\65\61\3\2\2\2\66\13"+
+		"\3\2\2\2\6\26!,\65";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

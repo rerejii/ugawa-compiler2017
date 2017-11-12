@@ -1,0 +1,10 @@
+T__0=1
+T__1=2
+BITOP=3
+ADDOP=4
+MULOP=5
+IDENTIFIER=6
+VALUE=7
+WS=8
+'('=1
+')'=2
