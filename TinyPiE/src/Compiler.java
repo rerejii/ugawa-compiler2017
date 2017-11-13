@@ -9,6 +9,14 @@ import parser.TinyPiEParser;
 
 public class Compiler extends CompilerBase {
 	void compileExpr(ASTNode ndx, Environment env) {
+		if (ndx instanceof ASTBinaryExprNode){
+			compileExprNode nd + (ASTBinaryExprNode) ndx;
+			compileExpr(nd.lhs, env);
+			emitPUSH(REG_R1);
+			emitRR("mov", REG_R1, REG_DET);
+			compileExpr(nd.rhs, env);
+			if (nd.op.equals("+"))
+		}
 		throw new Error("not implemented");
 	}
 	
