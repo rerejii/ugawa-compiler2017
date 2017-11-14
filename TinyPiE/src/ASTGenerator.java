@@ -26,7 +26,6 @@ public class ASTGenerator {
 			AddExprContext ctx = (AddExprContext) ctxx;
 			if (ctx.addExpr() == null)
 				return translateExpr(ctx.mulExpr());
-			//System.out.println(ctx.addExpr());
 			ASTNode lhs = translateExpr(ctx.addExpr());
 			ASTNode rhs = translateExpr(ctx.mulExpr());
 			if (ctx.ADDOP() != null) {
@@ -34,7 +33,6 @@ public class ASTGenerator {
 			} else {
 				return new ASTBinaryExprNode(ctx.MINOP().getText(), lhs, rhs);
 			}
-
 		} else if (ctxx instanceof MulExprContext) {
 			MulExprContext ctx = (MulExprContext) ctxx;
 			if (ctx.mulExpr() == null)
