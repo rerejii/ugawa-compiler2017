@@ -16,16 +16,17 @@ mulExpr: mulExpr MULOP unaryExpr
 	| unaryExpr
 	;
 
-unaryExpr: VALUE			# literalExpr
-	| IDENTIFIER			# varExpr
-	| '(' expr ')'			# parenExpr
+unaryExpr: NEGOP? VALUE			# literalExpr
+	| NEGOP? IDENTIFIER			# varExpr
+	| NEGOP? '(' expr ')'			# parenExpr
 	;
 
 
 BITOP: '&'|'|';
 ADDOP: '+'|'-';
 MULOP: '*'|'/';
+NEGOP: '~'|'-';
 
-IDENTIFIER: 'x'|'y'|'z';
+IDENTIFIER: [xyz];
 VALUE: [1-9][0-9]*|[0];
 WS: [ \t\r\n] -> skip;
