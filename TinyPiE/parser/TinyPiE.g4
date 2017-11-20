@@ -9,6 +9,7 @@ bitExpr: bitExpr BITOP addExpr
 	;
 
 addExpr: addExpr ADDOP mulExpr
+	| addExpr MINOP mulExpr
 	| mulExpr
 	;
 
@@ -16,16 +17,19 @@ mulExpr: mulExpr MULOP unaryExpr
 	| unaryExpr
 	;
 
-unaryExpr: NEGOP? VALUE			# literalExpr
-	| NEGOP? IDENTIFIER			# varExpr
-	| NEGOP? '(' expr ')'			# parenExpr
+unaryExpr: VALUE			# literalExpr
+	| IDENTIFIER			# varExpr
+	| '(' expr ')'		# parenExpr
+	| MINOP unaryExpr	# minExpr
+	| NOTOP unaryExpr	# notExpr
 	;
 
-
 BITOP: '&'|'|';
-ADDOP: '+'|'-';
+ADDOP: '+';
+MINOP: '-';
+NOTOP: '~';
 MULOP: '*'|'/';
-NEGOP: '~'|'-';
+
 
 IDENTIFIER: [xyz];
 VALUE: [1-9][0-9]*|[0];
