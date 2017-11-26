@@ -36,7 +36,7 @@ _start:
     @ r1復帰
     ldr r1, [sp], #4
     @ 引き算
-    sub r0, r0, r1
+    sub r0, r1, r0
     @ r1復帰
     ldr r1, [sp], #4
     @ EXITシステムコールを発行
