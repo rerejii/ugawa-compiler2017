@@ -58,6 +58,7 @@ class ASTIfStmtNode extends ASTNode {
 	}
 	@Override
 	public String toString() {
+		System.out.println("x");
 		return "(IfStmt "+cond+"\n"+thenClause+"\n"+elseClause+")";
 	}
 }
