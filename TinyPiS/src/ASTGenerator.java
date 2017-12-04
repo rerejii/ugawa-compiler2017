@@ -46,9 +46,9 @@ public class ASTGenerator {
 			return new ASTIfStmtNode(cond, thenClause, elseClause);
 		} else if (ctxx instanceof WhileStmtContext) {
 			WhileStmtContext ctx = (WhileStmtContext) ctxx;
-			ASTNode cond = translate(ctx.expr());
-			ASTNode stmt = translate(ctx.expr());
-			return new ASTWhileStmtNode(cond, stmt);
+			ASTNode expr = translate(ctx.expr());
+			ASTNode stmt = translate(ctx.stmt());
+			return new ASTWhileStmtNode(expr, stmt);
 		} else if (ctxx instanceof ExprContext) {
 			ExprContext ctx = (ExprContext) ctxx;
 			return translate(ctx.addExpr());

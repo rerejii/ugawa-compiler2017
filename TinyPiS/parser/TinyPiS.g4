@@ -11,7 +11,7 @@ stmt: '{' stmt* '}'			  # compoundStmt
     | IDENTIFIER '=' expr ';'		  # assignStmt
     | 'if' '(' expr ')' stmt 'else' stmt  # ifStmt
     | 'while' '(' expr ')' stmt	    	  # whileStmt
-    ;    
+    ;
 
 expr: addExpr
       ;
@@ -31,7 +31,6 @@ unaryExpr: VALUE			# literalExpr
 
 ADDOP: '+'|'-';
 MULOP: '*'|'/';
-
-IDENTIFIER: 'x'|'y'|'z'|'answer';
+IDENTIFIER: [a-z_][a-z1-9_]*|'answer';
 VALUE: [0-9]+;
 WS: [ \t\r\n] -> skip;
