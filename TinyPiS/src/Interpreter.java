@@ -22,6 +22,10 @@ public class Interpreter extends InterpreterBase {
 				return lhsValue * rhsValue;
 			else if (nd.op.equals("/"))
 				return lhsValue / rhsValue;
+			else if (nd.op.equals("&"))
+				return lhsValue & rhsValue;
+			else if (nd.op.equals("|"))
+				return lhsValue | rhsValue;
 			else
 				throw new Error("Unknwon operator: "+nd.op);
 		} else if (ndx instanceof ASTNumberNode) {
@@ -33,6 +37,15 @@ public class Interpreter extends InterpreterBase {
 			if (var == null)
 				throw new Error("Undefined variable: "+nd.varName);
 			return var.get();
+		} else if (ndx instanceof ASTUnaryExprNode) {
+			ASTUnaryExprNode nd = (ASTUnaryExprNode) ndx;
+			int operandValue = evalExpr(nd.operand, env);
+			if (nd.op.equals("-"))
+				return operandValue * -1;
+			else if (nd.op.equals("~"))
+				return ~operandValue;
+			else
+				throw new Error("Unknwon operator: "+nd.op);
 		} else {
 			throw new Error("Unknown expression: "+ndx);
 		}

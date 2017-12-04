@@ -43,10 +43,11 @@ public class Interpreter extends InterpreterBase {
 				return operandValue * -1;
 			else if (nd.op.equals("~"))
 				return ~operandValue;
+			else
+				throw new Error("Unknwon operator: "+nd.op);
 		} else {
 			throw new Error("Unknown expression: "+ndx);
 		}
-		return 0;
 	}
 
 	public int eval(ASTNode ast) {
