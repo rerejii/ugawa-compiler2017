@@ -7,3 +7,14 @@ var x; var y;
     y = 128;
   answer = y - 1;
 }
+
+var x; var y;
+{
+  x = 10;
+  y = 0;
+  while(x) {
+    y = x + y;
+    x = x - 1;
+  }
+  answer = y;
+}
