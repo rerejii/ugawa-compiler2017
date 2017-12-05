@@ -1,4 +1,4 @@
-      .section .data
+.section .data
 buf:    .space 8
 .byte    0x0a
 @ 大域変数の定義
@@ -57,7 +57,7 @@ addcs r0, r0, #57
 strb r0, [r1], #-1
 ldr r0, [sp], #4
 mov r0, r0, lsr #4
-cmp r0, r3
+cmp r1, r3
 bhi L2
 mov r0, #1
 mov r2, #9

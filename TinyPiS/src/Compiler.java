@@ -160,7 +160,7 @@ public class Compiler extends CompilerBase {
 		emitRRI("and", REG_DST, REG_DST, 15);
 		emitRI("cmp", REG_DST, 10);
 		emitRRI("addcc", REG_DST, REG_DST, '0');
-		emitRRI("addcs", REG_DST, REG_DST, 'A'-8);
+		emitRRI("addcs", REG_DST, REG_DST, 'A'-10);
 		System.out.println("\tstrb r0, [r1], #-1");
 		emitPOP(REG_DST);
 		System.out.println("\tmov r0, r0, lsr #4");
