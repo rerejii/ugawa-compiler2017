@@ -132,6 +132,6 @@ class ASTPrintStmtNode extends ASTNode {
 	}
 	@Override
 	public String toString() {
-		return "(PrExpr print "+stmt+")";
+		return "(PrintStmt "+stmt+")";
 	}
 }

@@ -147,13 +147,12 @@ public class Compiler extends CompilerBase {
 
 	void emitPrint() {
 		String loopLabel = freshLabel();
+		System.out.println("@-----print-----");
 		emitPUSH(REG_R7);
-		emitPUSH(REG_R4);
 		emitPUSH(REG_R3);
 		emitPUSH(REG_R2);
 		emitPUSH(REG_R1);
 		emitPUSH(REG_DST);
-
 		emitLDC(REG_R3, "buf");
 		emitRRI("add", REG_R1, REG_R3, 8);
 		emitLabel(loopLabel);
@@ -169,15 +168,16 @@ public class Compiler extends CompilerBase {
 		emitJMP("bhi", loopLabel);
 		emitRI("mov", REG_DST, 1);
 		emitRI("mov", REG_R2, 9);
-		emitRI("mov", REG_R7, 1);
+		//emitRI("mov", REG_R7, 4);
+		System.out.println("\tmov r7, #4");
 		emitI("swi", 0);
 
 		emitPOP(REG_DST);
 		emitPOP(REG_R1);
 		emitPOP(REG_R2);
 		emitPOP(REG_R3);
-		emitPOP(REG_R4);
 		emitPOP(REG_R7);
+		System.out.println("@-----print-----");
 	}
 
 

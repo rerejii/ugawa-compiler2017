@@ -41,8 +41,8 @@ public class ASTGenerator {
 			//PrintStmtContext
 		} else if (ctxx instanceof PrintStmtContext) {
 			PrintStmtContext ctx = (PrintStmtContext) ctxx;
- 			ASTNode stmt = translate(ctx.stmt());
- 			return new ASTPrintStmtNode(stmt);
+ 			ASTNode expr = translate(ctx.expr());
+ 			return new ASTPrintStmtNode(expr);
 		} else if (ctxx instanceof AssignStmtContext) {
 			AssignStmtContext ctx = (AssignStmtContext) ctxx;
 			String var = ctx.IDENTIFIER().getText();
