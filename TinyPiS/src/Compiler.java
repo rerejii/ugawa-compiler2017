@@ -53,6 +53,10 @@ public class Compiler extends CompilerBase {
 				emitRR("mvn", REG_DST, REG_DST);
 				emitRRI("add", REG_DST, REG_DST, 1);
 			}
+		} else if (ndx instanceof ASTPrintStmtNode) {
+			ASTPrintStmtNode nd = (ASTPrintStmtNode) ndx;
+			compileExpr(nd.stmt, env);
+
 		} else
 			throw new Error("Unknown expression: "+ndx);
 	}
@@ -61,6 +65,8 @@ public class Compiler extends CompilerBase {
 		Environment env = new Environment();
 		ASTProgNode prog = (ASTProgNode) ast;
 		System.out.println("\t.section .data");
+		System.out.println("buf:    .space 8");
+		System.out.println(".byte    0x0a  ");
 		System.out.println("\t@ 大域変数の定義");
 		for (String varName: prog.varDecls) {
 		    if (env.lookup(varName) != null)
@@ -85,6 +91,7 @@ public class Compiler extends CompilerBase {
 		emitLDR("r0", REG_DST, 0);
 		emitRI("mov", "r7", 1); // EXIT のシステムコール番号
 		emitI("swi", 0);
+
 	}
 
 	void compileStmt(ASTNode ndx, Environment env) {
@@ -130,8 +137,47 @@ public class Compiler extends CompilerBase {
 		  compileStmt(nd.stmt, env);
 		  emitJMP("b", loopLabel);
 		  emitLabel(endLabel);
+		} else if (ndx instanceof ASTPrintStmtNode) {
+			ASTPrintStmtNode nd = (ASTPrintStmtNode) ndx;
+			compileExpr(nd.stmt, env);
+			emitPrint();
 		} else
 		  throw new Error("Unknown expression: "+ndx);
+	}
+
+	void emitPrint() {
+		String loopLabel = freshLabel();
+		emitPUSH(REG_R7);
+		emitPUSH(REG_R4);
+		emitPUSH(REG_R3);
+		emitPUSH(REG_R2);
+		emitPUSH(REG_R1);
+		emitPUSH(REG_DST);
+
+		emitLDC(REG_R3, "buf");
+		emitRRI("add", REG_R1, REG_R3, 8);
+		emitLabel(loopLabel);
+		emitPUSH(REG_DST);
+		emitRRI("and", REG_DST, REG_DST, 15);
+		emitRI("cmp", REG_DST, 10);
+		emitRRI("addcc", REG_DST, REG_DST, '0');
+		emitRRI("addcs", REG_DST, REG_DST, 'A'-8);
+		System.out.println("\tstrb r0, [r1], #-1");
+		emitPOP(REG_DST);
+		System.out.println("\tmov r0, r0, lsr #4");
+		emitRR("cmp", REG_DST, REG_R3);
+		emitJMP("bhi", loopLabel);
+		emitRI("mov", REG_DST, 1);
+		emitRI("mov", REG_R2, 9);
+		emitRI("mov", REG_R7, 1);
+		emitI("swi", 0);
+
+		emitPOP(REG_DST);
+		emitPOP(REG_R1);
+		emitPOP(REG_R2);
+		emitPOP(REG_R3);
+		emitPOP(REG_R4);
+		emitPOP(REG_R7);
 	}
 
 

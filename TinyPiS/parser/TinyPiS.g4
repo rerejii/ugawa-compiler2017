@@ -11,6 +11,7 @@ stmt: '{' stmt* '}'			  # compoundStmt
     | IDENTIFIER '=' expr ';'		  # assignStmt
     | 'if' '(' expr ')' stmt 'else' stmt  # ifStmt
     | 'while' '(' expr ')' stmt	    	  # whileStmt
+    | 'print' stmt					# printStmt
     ;
 
 expr: orExpr
@@ -35,7 +36,7 @@ mulExpr: mulExpr MULOP unaryExpr
 
 unaryExpr: VALUE			# literalExpr
 	| IDENTIFIER			# varExpr
-	| '(' expr ')'			# parenExpr
+	| '(' expr ')'		# parenExpr
 	| MINOP unaryExpr	# minExpr
 	| NOTOP unaryExpr	# notExpr
 	;

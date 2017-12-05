@@ -124,3 +124,14 @@ class ASTUnaryExprNode extends ASTNode {
 		return "(UnExpr "+op+" "+operand+")";
 	}
 }
+
+class ASTPrintStmtNode extends ASTNode {
+	ASTNode stmt;
+	ASTPrintStmtNode(ASTNode stmt) {
+		this.stmt = stmt;
+	}
+	@Override
+	public String toString() {
+		return "(PrExpr print "+stmt+")";
+	}
+}

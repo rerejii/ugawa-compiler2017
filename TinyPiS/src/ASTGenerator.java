@@ -15,6 +15,7 @@ import parser.TinyPiSParser.MulExprContext;
 import parser.TinyPiSParser.NotExprContext;
 import parser.TinyPiSParser.OrExprContext;
 import parser.TinyPiSParser.ParenExprContext;
+import parser.TinyPiSParser.PrintStmtContext;
 import parser.TinyPiSParser.ProgContext;
 import parser.TinyPiSParser.StmtContext;
 import parser.TinyPiSParser.VarExprContext;
@@ -37,6 +38,11 @@ public class ASTGenerator {
 			  stmts.add(n);
 			}
 			return new ASTCompoundStmtNode(stmts);
+			//PrintStmtContext
+		} else if (ctxx instanceof PrintStmtContext) {
+			PrintStmtContext ctx = (PrintStmtContext) ctxx;
+ 			ASTNode stmt = translate(ctx.stmt());
+ 			return new ASTPrintStmtNode(stmt);
 		} else if (ctxx instanceof AssignStmtContext) {
 			AssignStmtContext ctx = (AssignStmtContext) ctxx;
 			String var = ctx.IDENTIFIER().getText();
