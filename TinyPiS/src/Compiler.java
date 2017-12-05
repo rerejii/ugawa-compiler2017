@@ -164,7 +164,7 @@ public class Compiler extends CompilerBase {
 		System.out.println("\tstrb r0, [r1], #-1");
 		emitPOP(REG_DST);
 		System.out.println("\tmov r0, r0, lsr #4");
-		emitRR("cmp", REG_DST, REG_R3);
+		emitRR("cmp", REG_R1, REG_R3);
 		emitJMP("bhi", loopLabel);
 		emitRI("mov", REG_DST, 1);
 		emitRI("mov", REG_R2, 9);
