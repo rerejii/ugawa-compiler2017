@@ -19,7 +19,7 @@ import parser.PiLangParser.StmtContext;
 import parser.PiLangParser.VarExprContext;
 import parser.PiLangParser.WhileStmtContext;
 
-public class ASTGenerator {	
+public class ASTGenerator {
 	ASTFunctionNode translateFuncDecl(FuncDeclContext ctx) {
 		ArrayList<String> params = new ArrayList<String>();
 		ArrayList<String> varDecls = new ArrayList<String>();
@@ -39,7 +39,7 @@ public class ASTGenerator {
 		}
 		return new ASTFunctionNode(funcName, params, varDecls, stmts);
 	}
-	
+
 	ASTNode translate(ParseTree ctxx) {
 		if (ctxx instanceof ProgContext) {
 			ProgContext ctx = (ProgContext) ctxx;
@@ -118,6 +118,16 @@ public class ASTGenerator {
 			}
 			return new ASTCallNode(funcName, args);
 		}
-		throw new Error("Unknown parse tree node: "+ctxx.getText());		
+		else if (ctxx instanceof CallExprContext) {
+			CallExprContext ctx = (CallExprContext) ctxx;
+			String funcName = ctx.IDENTIFIER().getText();
+			ArrayList<ASTNode> args = new ArrayList<ASTNode>();
+			for (ExprContext exprCtx: ctx.args().expr()) {
+				ASTNode arg = translate(exprCtx);
+				args.add(arg);
+			}
+			return new ASTCallNode(funcName, args);
+		}
+		throw new Error("Unknown parse tree node: "+ctxx.getText());
 	}
 }

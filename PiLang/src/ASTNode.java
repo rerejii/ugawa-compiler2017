@@ -159,3 +159,14 @@ class ASTCallNode extends ASTNode {
 		return s;
 	}
 }
+
+class ASTReturnNode extends ASTNode {
+	ASTNode stmt;
+	ASTReturnNode(ASTNode stmt) {
+		this.stmt = stmt;
+	}
+	@Override
+	public String toString() {
+		return "(ReturnStmt "+stmt+")";
+	}
+}
