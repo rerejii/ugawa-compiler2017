@@ -78,8 +78,10 @@ public class ASTGenerator {
 			ASTNode cond = translate(ctx.expr());
 			ASTNode stmt = translate(ctx.stmt());
 			return new ASTWhileStmtNode(cond, stmt);
-	        } else if (ctxx instanceof ReturnStmtContext) {
-			throw new Error("ASTGenerator.java を修正して ReturnStmtContext の変換を実装してください");
+	    } else if (ctxx instanceof ReturnStmtContext) {
+	        	ReturnStmtContext ctx = (ReturnStmtContext) ctxx;
+			ASTNode expr = translate(ctx.expr());
+			return new ASTReturnNode(expr);
 		} else if (ctxx instanceof ExprContext) {
 			ExprContext ctx = (ExprContext) ctxx;
 			return translate(ctx.addExpr());
