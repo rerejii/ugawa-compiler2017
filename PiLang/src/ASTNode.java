@@ -170,3 +170,14 @@ class ASTReturnNode extends ASTNode {
 		return "(ReturnStmt "+stmt+")";
 	}
 }
+
+class ASTPrintStmtNode extends ASTNode {
+	ASTNode stmt;
+	ASTPrintStmtNode(ASTNode stmt) {
+		this.stmt = stmt;
+	}
+	@Override
+	public String toString() {
+		return "(PrintStmt "+stmt+")";
+	}
+}

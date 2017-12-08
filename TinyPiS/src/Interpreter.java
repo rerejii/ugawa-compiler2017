@@ -89,7 +89,8 @@ public class Interpreter extends InterpreterBase {
 				  evalStmt(nd.stmt, env);
 		  } else if (ndx instanceof ASTPrintStmtNode) {
 			  ASTPrintStmtNode nd = (ASTPrintStmtNode) ndx;
-			  evalExpr(nd.stmt, env);
+			  int val = evalExpr(nd.stmt, env);
+			  System.out.println(String.format("%08X", val));
 		  } else
 		    throw new Error("Unknown statement: "+ndx);
 	}
