@@ -81,7 +81,7 @@ public class ASTGenerator {
 	    } else if (ctxx instanceof ReturnStmtContext) {
 	        	ReturnStmtContext ctx = (ReturnStmtContext) ctxx;
 			ASTNode expr = translate(ctx.expr());
-			return new ASTReturnNode(expr);
+			return new ASTReturnStmtNode(expr);
 		} else if (ctxx instanceof ExprContext) {
 			ExprContext ctx = (ExprContext) ctxx;
 			return translate(ctx.addExpr());

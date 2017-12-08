@@ -160,14 +160,27 @@ class ASTCallNode extends ASTNode {
 	}
 }
 
-class ASTReturnNode extends ASTNode {
-	ASTNode stmt;
-	ASTReturnNode(ASTNode stmt) {
-		this.stmt = stmt;
+class ASTUnaryExprNode extends ASTNode {
+	String op;
+	ASTNode operand;
+	ASTUnaryExprNode(String op, ASTNode operand) {
+		this.op = op;
+		this.operand = operand;
 	}
 	@Override
 	public String toString() {
-		return "(ReturnStmt "+stmt+")";
+		return "(UnExpr "+op+" "+operand+")";
+	}
+}
+
+class ASTReturnStmtNode extends ASTNode {
+	ASTNode expr;
+	ASTReturnStmtNode(ASTNode expr) {
+		this.expr = expr;
+	}
+	@Override
+	public String toString() {
+		return "(ReturnStmt "+expr+")";
 	}
 }
 
