@@ -187,6 +187,8 @@ public class Compiler extends CompilerBase {
 		ASTProgNode program = (ASTProgNode) ast;
 
 		System.out.println("\t.section .data");
+		System.out.println("buf:    .space 8");
+		System.out.println(".byte    0x0a  ");
 		System.out.println("\t@ 大域変数の定義");
 		for (String varName: program.varDecls) {
 			if (globalEnv.lookup(varName) != null)

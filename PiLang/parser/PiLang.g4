@@ -58,6 +58,6 @@ ADDOP: '+';
 MINOP: '-';
 NOTOP: '~';
 MULOP: '*'|'/';
-IDENTIFIER: [a-z_][a-z1-9_]*|'answer';
+IDENTIFIER: [A-Za-z_][A-Za-z0-9_]*|'answer';
 VALUE: [1-9][0-9]*|[0];
 WS: [ \t\r\n] -> skip;

@@ -1,23 +1,13 @@
 // Generated from parser/PiLang.g4 by ANTLR 4.6
 package parser;
-import java.util.List;
-
-import org.antlr.v4.runtime.FailedPredicateException;
-import org.antlr.v4.runtime.NoViableAltException;
-import org.antlr.v4.runtime.Parser;
-import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.RecognitionException;
-import org.antlr.v4.runtime.RuleContext;
-import org.antlr.v4.runtime.RuntimeMetaData;
-import org.antlr.v4.runtime.TokenStream;
-import org.antlr.v4.runtime.Vocabulary;
-import org.antlr.v4.runtime.VocabularyImpl;
-import org.antlr.v4.runtime.atn.ATN;
-import org.antlr.v4.runtime.atn.ATNDeserializer;
-import org.antlr.v4.runtime.atn.ParserATNSimulator;
-import org.antlr.v4.runtime.atn.PredictionContextCache;
+import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
-import org.antlr.v4.runtime.tree.TerminalNode;
+import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.misc.*;
+import org.antlr.v4.runtime.tree.*;
+import java.util.List;
+import java.util.Iterator;
+import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class PiLangParser extends Parser {
@@ -27,26 +17,26 @@ public class PiLangParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9,
-		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, OROP=15, ANDOP=16, ADDOP=17,
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
+		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, OROP=15, ANDOP=16, ADDOP=17, 
 		MINOP=18, NOTOP=19, MULOP=20, IDENTIFIER=21, VALUE=22, WS=23;
 	public static final int
-		RULE_prog = 0, RULE_funcDecl = 1, RULE_params = 2, RULE_varDecls = 3,
-		RULE_stmt = 4, RULE_expr = 5, RULE_orExpr = 6, RULE_andExpr = 7, RULE_addExpr = 8,
+		RULE_prog = 0, RULE_funcDecl = 1, RULE_params = 2, RULE_varDecls = 3, 
+		RULE_stmt = 4, RULE_expr = 5, RULE_orExpr = 6, RULE_andExpr = 7, RULE_addExpr = 8, 
 		RULE_mulExpr = 9, RULE_unaryExpr = 10, RULE_args = 11;
 	public static final String[] ruleNames = {
-		"prog", "funcDecl", "params", "varDecls", "stmt", "expr", "orExpr", "andExpr",
+		"prog", "funcDecl", "params", "varDecls", "stmt", "expr", "orExpr", "andExpr", 
 		"addExpr", "mulExpr", "unaryExpr", "args"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "'function'", "'('", "')'", "'{'", "'}'", "','", "'var'", "';'",
-		"'='", "'if'", "'else'", "'while'", "'return'", "'print'", "'|'", "'&'",
+		null, "'function'", "'('", "')'", "'{'", "'}'", "','", "'var'", "';'", 
+		"'='", "'if'", "'else'", "'while'", "'return'", "'print'", "'|'", "'&'", 
 		"'+'", "'-'", "'~'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, null, null, null, null, null, null, null, null,
-		null, null, null, "OROP", "ANDOP", "ADDOP", "MINOP", "NOTOP", "MULOP",
+		null, null, null, null, null, null, null, null, null, null, null, null, 
+		null, null, null, "OROP", "ANDOP", "ADDOP", "MINOP", "NOTOP", "MULOP", 
 		"IDENTIFIER", "VALUE", "WS"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
@@ -336,7 +326,7 @@ public class PiLangParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_stmt; }
-
+	 
 		public StmtContext() { }
 		public void copyFrom(StmtContext ctx) {
 			super.copyFrom(ctx);
@@ -596,7 +586,7 @@ public class PiLangParser extends Parser {
 					setState(109);
 					andExpr(0);
 					}
-					}
+					} 
 				}
 				setState(114);
 				_errHandler.sync(this);
@@ -667,7 +657,7 @@ public class PiLangParser extends Parser {
 					setState(120);
 					addExpr(0);
 					}
-					}
+					} 
 				}
 				setState(125);
 				_errHandler.sync(this);
@@ -757,7 +747,7 @@ public class PiLangParser extends Parser {
 						}
 						break;
 					}
-					}
+					} 
 				}
 				setState(139);
 				_errHandler.sync(this);
@@ -828,7 +818,7 @@ public class PiLangParser extends Parser {
 					setState(145);
 					unaryExpr();
 					}
-					}
+					} 
 				}
 				setState(150);
 				_errHandler.sync(this);
@@ -852,7 +842,7 @@ public class PiLangParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_unaryExpr; }
-
+	 
 		public UnaryExprContext() { }
 		public void copyFrom(UnaryExprContext ctx) {
 			super.copyFrom(ctx);
