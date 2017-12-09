@@ -120,16 +120,7 @@ public class ASTGenerator {
 			}
 			return new ASTCallNode(funcName, args);
 		}
-		else if (ctxx instanceof CallExprContext) {
-			CallExprContext ctx = (CallExprContext) ctxx;
-			String funcName = ctx.IDENTIFIER().getText();
-			ArrayList<ASTNode> args = new ArrayList<ASTNode>();
-			for (ExprContext exprCtx: ctx.args().expr()) {
-				ASTNode arg = translate(exprCtx);
-				args.add(arg);
-			}
-			return new ASTCallNode(funcName, args);
-		}
+
 		throw new Error("Unknown parse tree node: "+ctxx.getText());
 	}
 }
