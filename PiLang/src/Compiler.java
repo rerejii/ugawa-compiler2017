@@ -21,18 +21,19 @@ public class Compiler extends CompilerBase {
 			env.push(var);
 		}
 		/* ここにローカル変数の追加のコードを書くこと */
-		for (int i = 0; i < nd.varDecls.size(); i++) {
-			String name = nd.varDecls.get(i);
-			int offset = -4 * (i + 3);
-			LocalVariable var = new LocalVariable(name, offset);
-			env.push(var);
-		}
+		emitRI("mov", REG_DST, 0);
 		emitLabel(nd.name);
 		System.out.println("\t@ prologue");
 		emitPUSH(REG_FP);
 		emitRR("mov", REG_FP, REG_SP);
 		emitPUSH(REG_LR);
 		emitPUSH(REG_R1);
+		for (int i = 0; i < nd.varDecls.size(); i++) {
+			String name = nd.varDecls.get(i);
+			int offset = -4 * (i + 3);
+			LocalVariable var = new LocalVariable(name, offset);
+			env.push(var);
+		}
 		emitRRI("sub", REG_SP, REG_SP, nd.varDecls.size() * 4); for (ASTNode stmt: nd.stmts)
 		compileStmt(stmt, epilogueLabel, env);
 		emitRI("mov", REG_DST, 0); // return がなかったときの戻り値 0 emitLabel(epilogueLabel);
@@ -69,7 +70,7 @@ public class Compiler extends CompilerBase {
 			  } else {
 				  LocalVariable localVar = (LocalVariable) var;
 				  int offset = localVar.offset;
-				  emitLDR(REG_DST, REG_FP, offset);
+				  emitSTR(REG_DST, REG_FP, offset);
 			  }
 			} else if (ndx instanceof ASTIfStmtNode) {
 			  ASTIfStmtNode nd = (ASTIfStmtNode) ndx;
