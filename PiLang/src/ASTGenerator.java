@@ -4,6 +4,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import parser.PiLangParser.AddExprContext;
+import parser.PiLangParser.AndExprContext;
 import parser.PiLangParser.AssignStmtContext;
 import parser.PiLangParser.CallExprContext;
 import parser.PiLangParser.CompoundStmtContext;
@@ -12,6 +13,7 @@ import parser.PiLangParser.FuncDeclContext;
 import parser.PiLangParser.IfStmtContext;
 import parser.PiLangParser.LiteralExprContext;
 import parser.PiLangParser.MulExprContext;
+import parser.PiLangParser.OrExprContext;
 import parser.PiLangParser.ParenExprContext;
 import parser.PiLangParser.ProgContext;
 import parser.PiLangParser.ReturnStmtContext;
@@ -84,14 +86,32 @@ public class ASTGenerator {
 			return new ASTReturnStmtNode(expr);
 		} else if (ctxx instanceof ExprContext) {
 			ExprContext ctx = (ExprContext) ctxx;
-			return translate(ctx.addExpr());
+			return translate(ctx.orExpr());
+		} else if (ctxx instanceof OrExprContext) {
+			OrExprContext ctx = (OrExprContext) ctxx;
+			if (ctx.orExpr() == null)
+				return translate(ctx.andExpr());
+			ASTNode lhs = translate(ctx.orExpr());
+			ASTNode rhs = translate(ctx.andExpr());
+			return new ASTBinaryExprNode(ctx.OROP().getText(), lhs, rhs);
+		} else if (ctxx instanceof AndExprContext) {
+			AndExprContext ctx = (AndExprContext) ctxx;
+			if (ctx.andExpr() == null)
+				return translate(ctx.addExpr());
+			ASTNode lhs = translate(ctx.andExpr());
+			ASTNode rhs = translate(ctx.addExpr());
+			return new ASTBinaryExprNode(ctx.ANDOP().getText(), lhs, rhs);
 		} else if (ctxx instanceof AddExprContext) {
 			AddExprContext ctx = (AddExprContext) ctxx;
 			if (ctx.addExpr() == null)
 				return translate(ctx.mulExpr());
 			ASTNode lhs = translate(ctx.addExpr());
 			ASTNode rhs = translate(ctx.mulExpr());
-			return new ASTBinaryExprNode(ctx.ADDOP().getText(), lhs, rhs);
+			if (ctx.ADDOP() != null) {
+				return new ASTBinaryExprNode(ctx.ADDOP().getText(), lhs, rhs);
+			} else {
+				return new ASTBinaryExprNode(ctx.MINOP().getText(), lhs, rhs);
+			}
 		} else if (ctxx instanceof MulExprContext) {
 			MulExprContext ctx = (MulExprContext) ctxx;
 			if (ctx.mulExpr() == null)
