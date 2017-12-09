@@ -28,9 +28,12 @@ public class Compiler extends CompilerBase {
 		emitRR("mov", REG_FP, REG_SP);
 		emitPUSH(REG_LR);
 		emitPUSH(REG_R1);
+		emitPUSH(REG_R2);
+		emitPUSH(REG_R3);
+		emitPUSH(REG_R7);
 		for (int i = 0; i < nd.varDecls.size(); i++) {
 			String name = nd.varDecls.get(i);
-			int offset = -4 * (i + 3);
+			int offset = -4 * (i + 6);
 			LocalVariable var = new LocalVariable(name, offset);
 			env.push(var);
 		}
@@ -41,6 +44,9 @@ public class Compiler extends CompilerBase {
 		System.out.println("\t@ epilogue");
 		emitLabel(epilogueLabel);
 		emitRRI("add", REG_SP, REG_SP, nd.varDecls.size() * 4);
+		emitPOP(REG_R7);
+		emitPOP(REG_R3);
+		emitPOP(REG_R2);
 		emitPOP(REG_R1);
 		emitPOP(REG_LR);
 		emitPOP(REG_FP);

@@ -15,6 +15,7 @@ import parser.PiLangParser.LiteralExprContext;
 import parser.PiLangParser.MulExprContext;
 import parser.PiLangParser.OrExprContext;
 import parser.PiLangParser.ParenExprContext;
+import parser.PiLangParser.PrintStmtContext;
 import parser.PiLangParser.ProgContext;
 import parser.PiLangParser.ReturnStmtContext;
 import parser.PiLangParser.StmtContext;
@@ -139,6 +140,10 @@ public class ASTGenerator {
 				args.add(arg);
 			}
 			return new ASTCallNode(funcName, args);
+		} else if (ctxx instanceof PrintStmtContext) {
+			PrintStmtContext ctx = (PrintStmtContext) ctxx;
+ 			ASTNode expr = translate(ctx.expr());
+ 			return new ASTPrintStmtNode(expr);
 		}
 
 		throw new Error("Unknown parse tree node: "+ctxx.getText());
