@@ -12,7 +12,9 @@ import parser.PiLangParser.ExprContext;
 import parser.PiLangParser.FuncDeclContext;
 import parser.PiLangParser.IfStmtContext;
 import parser.PiLangParser.LiteralExprContext;
+import parser.PiLangParser.MinExprContext;
 import parser.PiLangParser.MulExprContext;
+import parser.PiLangParser.NotExprContext;
 import parser.PiLangParser.OrExprContext;
 import parser.PiLangParser.ParenExprContext;
 import parser.PiLangParser.PrintStmtContext;
@@ -140,6 +142,14 @@ public class ASTGenerator {
 				args.add(arg);
 			}
 			return new ASTCallNode(funcName, args);
+		} else if (ctxx instanceof MinExprContext) {
+			MinExprContext ctx = (MinExprContext) ctxx;
+			ASTNode operand = translate(ctx.unaryExpr());
+			return new ASTUnaryExprNode(ctx.MINOP().getText(), operand);
+		} else if (ctxx instanceof NotExprContext) {
+			NotExprContext ctx = (NotExprContext) ctxx;
+			ASTNode operand = translate(ctx.unaryExpr());
+			return new ASTUnaryExprNode(ctx.NOTOP().getText(), operand);
 		} else if (ctxx instanceof PrintStmtContext) {
 			PrintStmtContext ctx = (PrintStmtContext) ctxx;
  			ASTNode expr = translate(ctx.expr());

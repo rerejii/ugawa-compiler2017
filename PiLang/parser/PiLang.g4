@@ -46,6 +46,8 @@ unaryExpr: VALUE			# literalExpr
 	| IDENTIFIER			# varExpr
 	| '(' expr ')'			# parenExpr
 	| IDENTIFIER '(' args ')' # callExpr
+	| MINOP unaryExpr	# minExpr
+	| NOTOP unaryExpr	# notExpr
 	;
 
 args: /* no arguments */
