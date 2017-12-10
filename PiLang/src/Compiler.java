@@ -187,8 +187,10 @@ public class Compiler extends CompilerBase {
 		ASTProgNode program = (ASTProgNode) ast;
 
 		System.out.println("\t.section .data");
-		System.out.println("buf:    .space 8");
-		System.out.println(".byte    0x0a  ");
+		System.out.println("_print_buf:");
+		System.out.println("\t.space 9");
+		//System.out.println(".equ _print_buflen, . - _print_buf");
+		System.out.println("\t.ascii \"\\n\"");
 		System.out.println("\t@ 大域変数の定義");
 		for (String varName: program.varDecls) {
 			if (globalEnv.lookup(varName) != null)
@@ -220,8 +222,11 @@ public class Compiler extends CompilerBase {
 		emitPUSH(REG_R2);
 		emitPUSH(REG_R1);
 		emitPUSH(REG_DST);
-		emitLDC(REG_R3, "buf");
-		emitRRI("add", REG_R1, REG_R3, 8);
+		emitLDC(REG_R1, "_print_buf");
+		emitRR("mov", REG_R3, REG_R1);
+		emitRI("add", REG_R1, 8);
+		//System.out.println("\tadd r1, #_print_buflen");
+		//emitRI("sub", REG_R1, 2);
 		emitLabel(loopLabel);
 		emitPUSH(REG_DST);
 		emitRRI("and", REG_DST, REG_DST, 15);
@@ -233,10 +238,11 @@ public class Compiler extends CompilerBase {
 		System.out.println("\tmov r0, r0, lsr #4");
 		emitRR("cmp", REG_R1, REG_R3);
 		emitJMP("bhi", loopLabel);
+		emitRI("mov", REG_R7, 4);
 		emitRI("mov", REG_DST, 1);
-		emitRI("mov", REG_R2, 9);
+		emitRI("mov", REG_R2, 10);
 		//emitRI("mov", REG_R7, 4);
-		System.out.println("\tmov r7, #4");
+		//System.out.println("\tmov r7, #4");
 		emitI("swi", 0);
 
 		emitPOP(REG_DST);

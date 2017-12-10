@@ -21,7 +21,7 @@ mov r0, r0, lsr #4
 cmp r1, r3
 bhi loop
 mov    r0, #1        @ writeの出力先を指定
-mov    r2, #9        @ 出力すう
+mov    r2, #20        @ 出力すう
 mov    r7, #4        @ writeシステムコール番号
 swi    #0            @ writeコール
 ldr r2, [sp], #4
