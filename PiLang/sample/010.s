@@ -1,4 +1,4 @@
-.section .data
+	.section .data
 _print_buf:
 	.space 9
 	.ascii "\n"
@@ -22,13 +22,16 @@ main:
 	str r3, [sp, #-4]!
 	str r7, [sp, #-4]!
 	sub sp, sp, #0
-	ldr r0, =#5
-	str r1, [sp, #-4]!
-	mov r1, r0
-	ldr r0, =#7
-	and r0, r1, r0
-	ldr r1, [sp], #4
+	ldr r0, =#1
+	cmp r0, #0
+	beq L1
+	ldr r0, =#1
 	b L0
+	b L2
+L1:
+	ldr r0, =#2
+	b L0
+L2:
 	mov r0, #0
 	@ epilogue
 L0:

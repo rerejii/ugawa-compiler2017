@@ -131,8 +131,8 @@ public class Compiler extends CompilerBase {
 		  ASTWhileStmtNode nd = (ASTWhileStmtNode) ndx;
 		  String loopLabel = freshLabel();
 		  String endLabel = freshLabel();
-		  compileExpr(nd.cond, env);
 		  emitLabel(loopLabel);
+		  compileExpr(nd.cond, env);
 		  emitRI("cmp", REG_DST, 0);
 		  emitJMP("beq", endLabel);
 		  compileStmt(nd.stmt, env);
