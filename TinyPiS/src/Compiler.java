@@ -24,7 +24,7 @@ public class Compiler extends CompilerBase {
 			else if (nd.op.equals("/"))
 				emitRRR("udiv", REG_DST, REG_R1, REG_DST);
 			else if (nd.op.equals("&"))
-				emitRRR("bic", REG_DST, REG_R1, REG_DST);
+				emitRRR("and", REG_DST, REG_R1, REG_DST);
 			else if (nd.op.equals("|"))
 				emitRRR("orr", REG_DST, REG_R1, REG_DST);
 			else
